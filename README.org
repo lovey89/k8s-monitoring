@@ -2,6 +2,10 @@
 
 - https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 
+Note that you shouldn't make the application available on the Internet. The only
+reason I have this repo is because I want to experiment with [[https://argoproj.github.io/argo-cd/][Argo CD]] in
+[[https://minikube.sigs.k8s.io/docs/][minikube]].
+
 ** Setup this repo
 
 #+BEGIN_SRC bash
@@ -11,3 +15,13 @@ helm pull prometheus-community/kube-prometheus-stack
 tar -xzf kube-prometheus-stack-*.tgz
 rm kube-prometheus-stack-*.tgz
 #+END_SRC
+
+** Get password for admin user
+
+Given you have deployed this chart in a namespace called ~monitoring~:
+
+#+BEGIN_SRC bash :results output
+kubectl get -n monitoring secret prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d && echo
+#+END_SRC
+
+The username is ~admin~
