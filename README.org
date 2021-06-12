@@ -1,0 +1,13 @@
+* k8s-monitoring
+
+- https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+
+** Setup this repo
+
+#+BEGIN_SRC bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm pull prometheus-community/kube-prometheus-stack
+tar -xzf kube-prometheus-stack-*.tgz
+rm kube-prometheus-stack-*.tgz
+#+END_SRC
